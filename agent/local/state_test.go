@@ -1799,7 +1799,7 @@ func TestAgent_AliasCheck(t *testing.T) {
 	require.NoError(l.AddCheck(&structs.HealthCheck{CheckID: types.CheckID("c2"), ServiceID: "s2"}, ""))
 
 	// Add an alias
-	notifyCh := make(chan struct{}, 1)
+	notifyCh := make(chan []*structs.HealthCheck, 1)
 	require.NoError(l.AddAliasCheck(types.CheckID("a1"), "s1", notifyCh))
 
 	// Update and verify we get notified
